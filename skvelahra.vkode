@@ -1,0 +1,65 @@
+clear()
+print("NEZAVIREJ TOTO OKNO!")
+
+windowSetname("Kles of skyls")
+
+windowSetbutton("Pokracovat")
+window("Ahoj ubozaku")
+
+sleep("2")
+
+windowSetbutton("Skvele sefe")
+windowSetsecondbutton("Hruza hruzny den sefe")
+
+window("Tak co jak se dnes mas??")
+
+windowSetbutton("Pardon sefe")
+windowSetsecondbutton("Vy jste se ptal sefe")
+
+window("Sory ale kdo se ptal?")
+
+windowSetbutton("Pardon pane")
+windowSetsecondbutton("/clear/")
+
+window("DRZ PICU RADSI JO?")
+
+windowSetbutton("*Byt potichu*")
+windowSetsecondbutton("Rict its e prenk cenek")
+window("*Pan je nasrany*")
+
+windowSetbutton("Ja se moc omlouvam pane")
+windowSetsecondbutton("hehe its dzast e prenk CENEK ITS JAST E PRENK")
+window("UAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA KOKOTEEE")
+
+windowSetbutton("Je mi to vazne lito sefe")
+windowSetsecondbutton("vsak je to jenom prenk sefe")
+window("Zadna slova uz neopravi co jsi udelal ubozaku!")
+
+windowSetbutton("PROSIM NE")
+windowSetsecondbutton("ITS DZAST A PRNEK ITS JAST A PRENK NEEEEOOOO NEIN ITS JAST A PRENK")
+window("*Pan vytahne mec ze sveho zadku a podiva se na tebe svyma hnusnyma havranima ocima ktere se divaji zle*")
+
+windowSetbutton("/clear/")
+windowSetname("Konec hry posral jsi to LLL")
+window("Pan te zabil jeho posranym mecem  konec hry")
+
+windowSetname("HAHA NAPALEN")
+windowSetbutton("epicky jsem byl vyprankovani zmrdi jedni")
+windowSetsecondbutton("ja to vedel")
+window("HAHAHAHHAHAHA NEJSI MRTVY BYL TO JENOM PRANK CENKU!!!")
+
+windowSetsecondbutton("/clear/")
+windowSetbutton("jdu spat nemam vas rad")
+window("BYL JSI NAPALEN JSI STALE ZIV!")
+
+windowSetbutton("*jit spat*")
+windowSetbutton("typico to byl ale den co")
+
+windowSetbutton("/clear/")
+windowSetname("Konec hry posral jsi to LLL")
+window("To ze je to prank byl prank a v noci co jsi usnul te zabili protoze jsi na Pana byl zly-")
+
+window("Tato hra je plna prekvapeni")
+window("Pouceni: nikdy never nikomu bro")
+
+end()

@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <author>Vít Kozel</author>
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>787</width>
+    <height>518</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>VKode Dev View</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonTextOnly</enum>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>301</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Leelawadee UI</family>
+      <pointsize>48</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Dev View</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>110</y>
+      <width>671</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Consolas</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>D:/Soubory/jine/Developing/vkode/5/hra.vkode</string>
+    </property>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>140</y>
+      <width>751</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="line_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>180</y>
+      <width>751</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>150</y>
+      <width>681</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Consolas</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>D:/Soubory/jine/Developing/vkode/5/hra.vkode</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>190</y>
+      <width>681</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Consolas</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>D:/Soubory/jine/Developing/vkode/5/hra.vkode</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>120</y>
+      <width>81</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Leelawadee UI</family>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>OPEN</string>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>153</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Leelawadee UI</family>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>OPEN</string>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>190</y>
+      <width>81</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Leelawadee UI</family>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>OPEN</string>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>230</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Leelawadee UI</family>
+      <pointsize>11</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>FILE TRANSFER</string>
+    </property>
+    <property name="autoRepeat">
+     <bool>false</bool>
+    </property>
+    <property name="autoExclusive">
+     <bool>false</bool>
+    </property>
+    <property name="autoDefault">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="Line" name="line_3">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>220</y>
+      <width>751</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>230</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Leelawadee UI</family>
+      <pointsize>11</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="text">
+     <string>VIEW FULL LOG</string>
+    </property>
+    <property name="autoRepeat">
+     <bool>false</bool>
+    </property>
+    <property name="autoExclusive">
+     <bool>false</bool>
+    </property>
+    <property name="autoDefault">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>40</y>
+      <width>101</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Consolas</family>
+      <pointsize>18</pointsize>
+      <underline>false</underline>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="text">
+     <string>BETA</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>420</y>
+      <width>781</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Bahnschrift SemiBold SemiConden</family>
+      <pointsize>9</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>IMPORTANT! DEV VIEW IS EXPERIMENTAL FEATURE and may not work properly. Some features are not fully available yet.</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>440</y>
+      <width>781</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Bahnschrift Light SemiCondensed</family>
+      <pointsize>9</pointsize>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string> (c) Vít Kozel, 2021. Part of VKode. Read license at vkode.xyz/license. vkode.https://twiter.com/vkode_</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>787</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="Exit" stdset="0">
+    <string/>
+   </property>
+   <widget class="QMenu" name="menuDev_View">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionExit_2"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionOfficial_Website"/>
+    <addaction name="actionTwitter"/>
+    <addaction name="actionDonate"/>
+   </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>Tools</string>
+    </property>
+    <widget class="QMenu" name="menuFTP">
+     <property name="title">
+      <string>FTP</string>
+     </property>
+     <addaction name="actionSet_FTP_2"/>
+     <addaction name="actionPush_FTP_2"/>
+    </widget>
+    <widget class="QMenu" name="menuVKode_Updater">
+     <property name="title">
+      <string>VKode Updater</string>
+     </property>
+     <addaction name="actionCheck_for_updates_2"/>
+    </widget>
+    <addaction name="actionFTP_2"/>
+    <addaction name="actionVKode_Settings"/>
+    <addaction name="separator"/>
+    <addaction name="menuFTP"/>
+    <addaction name="menuVKode_Updater"/>
+   </widget>
+   <widget class="QMenu" name="menuModules">
+    <property name="title">
+     <string>Modules</string>
+    </property>
+    <addaction name="actionGet_modules"/>
+    <addaction name="actionInstalled_modules"/>
+    <addaction name="actionPublish_module"/>
+    <addaction name="separator"/>
+    <addaction name="actionPublish_module_2"/>
+   </widget>
+   <widget class="QMenu" name="menuLearn">
+    <property name="title">
+     <string>Learn</string>
+    </property>
+    <widget class="QMenu" name="menuLesson">
+     <property name="title">
+      <string>Lesson</string>
+     </property>
+     <addaction name="actionChoose"/>
+    </widget>
+    <addaction name="actionDocumentation_3"/>
+    <addaction name="actionVideos_2"/>
+    <addaction name="menuLesson"/>
+   </widget>
+   <widget class="QMenu" name="menuRepair_2">
+    <property name="title">
+     <string>Repair</string>
+    </property>
+    <widget class="QMenu" name="menuValidate_files">
+     <property name="title">
+      <string>Validate files</string>
+     </property>
+     <addaction name="actionValidate_Console_files"/>
+     <addaction name="actionValidate"/>
+     <addaction name="actionValidate_All"/>
+    </widget>
+    <addaction name="menuValidate_files"/>
+    <addaction name="actionReinstall_VKode"/>
+   </widget>
+   <addaction name="menuDev_View"/>
+   <addaction name="menuTools"/>
+   <addaction name="menuModules"/>
+   <addaction name="menuRepair_2"/>
+   <addaction name="menuLearn"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionExit">
+   <property name="text">
+    <string>Restart</string>
+   </property>
+  </action>
+  <action name="actionOpen_Console">
+   <property name="text">
+    <string>Open Console</string>
+   </property>
+  </action>
+  <action name="actionOpen_folder">
+   <property name="text">
+    <string>VK Settings</string>
+   </property>
+  </action>
+  <action name="actionDocumentation">
+   <property name="text">
+    <string>Documentation</string>
+   </property>
+  </action>
+  <action name="actionOfficial_Website">
+   <property name="text">
+    <string>Official Website</string>
+   </property>
+  </action>
+  <action name="actionTwitter">
+   <property name="text">
+    <string>Twitter</string>
+   </property>
+  </action>
+  <action name="actionExit_2">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+   <property name="statusTip">
+    <string>Close Dev View</string>
+   </property>
+   <property name="shortcut">
+    <string/>
+   </property>
+  </action>
+  <action name="actionFTP">
+   <property name="text">
+    <string>FTP</string>
+   </property>
+  </action>
+  <action name="actionrun_logs">
+   <property name="text">
+    <string>run() logs</string>
+   </property>
+  </action>
+  <action name="actionFTP_2">
+   <property name="text">
+    <string>run() logs</string>
+   </property>
+  </action>
+  <action name="actionSet_FTP">
+   <property name="text">
+    <string>Set FTP</string>
+   </property>
+  </action>
+  <action name="actionPush_FTP">
+   <property name="text">
+    <string>Push FTP</string>
+   </property>
+  </action>
+  <action name="actionVKode_Settings">
+   <property name="text">
+    <string>VKode Settings</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionCheck_for_updates">
+   <property name="text">
+    <string>Check VKode for updates</string>
+   </property>
+  </action>
+  <action name="actionDocumentation_2">
+   <property name="text">
+    <string>Documentation</string>
+   </property>
+  </action>
+  <action name="actionSet_FTP_2">
+   <property name="text">
+    <string>Set FTP</string>
+   </property>
+  </action>
+  <action name="actionPush_FTP_2">
+   <property name="text">
+    <string>Push FTP</string>
+   </property>
+  </action>
+  <action name="actionFirst_steps">
+   <property name="text">
+    <string>First steps</string>
+   </property>
+  </action>
+  <action name="actionHow_to_Dev_View">
+   <property name="text">
+    <string>How to Dev View</string>
+   </property>
+  </action>
+  <action name="actionFirst_steps_2">
+   <property name="text">
+    <string>First steps</string>
+   </property>
+  </action>
+  <action name="actionFiles">
+   <property name="text">
+    <string>Files</string>
+   </property>
+  </action>
+  <action name="actionDonate">
+   <property name="text">
+    <string>Support development</string>
+   </property>
+  </action>
+  <action name="actionGetting_started">
+   <property name="text">
+    <string>Getting started</string>
+   </property>
+  </action>
+  <action name="actionCheck_for_DV_updates">
+   <property name="text">
+    <string>Check for DV updates</string>
+   </property>
+  </action>
+  <action name="actionCheck_for_Devview_updates">
+   <property name="text">
+    <string>Check for Devview updates</string>
+   </property>
+  </action>
+  <action name="actionCheck_for_updates_2">
+   <property name="text">
+    <string>Check for updates</string>
+   </property>
+  </action>
+  <action name="actionGet_modules">
+   <property name="text">
+    <string>Get modules</string>
+   </property>
+  </action>
+  <action name="actionInstalled_modules">
+   <property name="text">
+    <string>Installed modules</string>
+   </property>
+  </action>
+  <action name="actionLearn">
+   <property name="text">
+    <string>Learn</string>
+   </property>
+  </action>
+  <action name="actionDocumentation_3">
+   <property name="text">
+    <string>Documentation</string>
+   </property>
+  </action>
+  <action name="actionVideos_2">
+   <property name="text">
+    <string>Videos</string>
+   </property>
+  </action>
+  <action name="actionChoose">
+   <property name="text">
+    <string>Choose</string>
+   </property>
+  </action>
+  <action name="actionDev_View_FTP">
+   <property name="text">
+    <string>Dev View FTP</string>
+   </property>
+  </action>
+  <action name="actionPublish_module">
+   <property name="text">
+    <string>Uninstall modules</string>
+   </property>
+  </action>
+  <action name="actionPublish_module_2">
+   <property name="text">
+    <string>Publish module</string>
+   </property>
+  </action>
+  <action name="actionValidate_VKode_files">
+   <property name="text">
+    <string>Validate VKode files</string>
+   </property>
+  </action>
+  <action name="actionReinstall_VKode">
+   <property name="text">
+    <string>Reinstall VKode</string>
+   </property>
+  </action>
+  <action name="actionValidate_Console_files">
+   <property name="text">
+    <string>Validate Console</string>
+   </property>
+  </action>
+  <action name="actionValidate">
+   <property name="text">
+    <string>Validate basic Vkode files</string>
+   </property>
+  </action>
+  <action name="actionValidate_All">
+   <property name="text">
+    <string>Validate All</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
