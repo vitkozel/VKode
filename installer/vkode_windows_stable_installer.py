@@ -14,6 +14,7 @@ import shutil
 import zipfile
 import winshell
 from pathlib import Path
+import os, winshell, win32com.client, Pythoncom
 directory = __file__
 
 print(" 1.  Hello! Thank you for your interest in VKode.")
@@ -101,3 +102,25 @@ with zipfile.ZipFile(file_path_variable + file_name, 'r') as zip_ref:
 os.remove(file_path_variable + file_name)
 
 print("Package extracted")
+
+desktop = Path(winshell.desktop())
+miniconda_base = Path(
+    winshell.folder('CSIDL_LOCAL_APPDATA')) / 'Continuum' / 'miniconda3'
+win32_cmd = str(Path(winshell.folder('CSIDL_SYSTEM')) / 'cmd.exe')
+icon = str(file_path_variable + "icon.ico")
+
+my_working = str(Path(winshell.folder(file_path_variable + "console.py")) / "py_work")
+link_filepath = str(desktop / "VKode Console.lnk")
+
+# Build up all the arguments to cmd.exe
+# Use /K so that the command prompt will stay open
+arg_str = "/K " + str(miniconda_base / "Scripts" / "activate.bat") + " " + str(
+    miniconda_base / "envs" / "work")
+
+# Create the shortcut on the desktop
+with winshell.shortcut(link_filepath) as link:
+    link.path = win32_cmd
+    link.description = "VKode Console"
+    link.arguments = arg_str
+    link.icon_location = (icon, 0)
+    link.working_directory = my_working
