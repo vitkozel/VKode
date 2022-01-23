@@ -14,7 +14,7 @@ import shutil
 import zipfile
 import winshell
 from pathlib import Path
-import os, winshell, win32com.client, Pythoncom
+#import os, winshell, win32com.client, Pythoncom
 directory = __file__
 
 print(" 1.  Hello! Thank you for your interest in VKode.")
