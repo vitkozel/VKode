@@ -8,7 +8,7 @@ import vkode_build
 # Run the script
 while True:
 	#print("") # The startup line (delete the comment to activate)
-	text = ('run("1984")') # '1984' will be replaced with the .vkode file name
+	text = ('run("k.vkbuild")') # 'k.vkbuild' will be replaced with the .vkode file name
 	if text.strip() == "": continue
 	result, error = vkode_build.run('<sdin>', text) # Print the result to the Console
 
