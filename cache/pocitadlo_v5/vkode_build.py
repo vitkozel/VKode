@@ -1,65 +1,31 @@
-from codecs import replace_errors
-from curses import window
-from distutils.log import error
-from logging import warning
 from time import time
-
-from numpy import number # For time
-from strings_with_arrows import * # External source
+from strings_with_arrows import *
 import string
-import os # Should be installed by default
-import os.path
+import os
 import math
 import time
-import webbrowser # For web functions
-import turtle # Not needed in factory-set VKode
+import webbrowser
+import turtle
 from urllib import request
-from pathlib import Path # For paths
+from pathlib import Path
 from urllib.request import urlopen
 import requests
 from datetime import datetime
-import pymsgbox # For dialogue windows
+import pymsgbox
 import subprocess
-from colorama import init # For colored text lines
-init() # Initiate Colorama (from line 17)
-from colorama import Fore, Back, Style # And finally importing Colorama (from line 17)
-from inspect import currentframe, getframeinfo # Library needed to get information to warnings
+from colorama import init
+init()
+from colorama import Fore, Back, Style
+
+# constants
+
+DIGITS = '0123456789'
+LETTERS = string.ascii_letters
+LETTERS_DIGITS = LETTERS + DIGITS
 
 
-# CONSTANTS
-DIGITS = '0123456789' # Numbers
-LETTERS = string.ascii_letters # Letters
-LETTERS_DIGITS = LETTERS + DIGITS # Numbers and letters :)
+# error messaging
 
-vkode_location = os.path.abspath(__file__) # Getting vkode.py location
-vkode_location = vkode_location[:-8] # Deleting the 'vkode.py' in the end of the vkode.py location (from line 28)
-global frameinfo
-frameinfo = getframeinfo(currentframe()) # Info about current file and current line
-actual_location = ""
-
-global openedfile
-openedfile = ""
-global runloc
-runloc = ""
-
-
-
-# WARNINGS
-global warning_sign
-warning_sign = Fore.RED + "  ! " + Fore.RESET
-global frame_info
-frame_info = ""
-
-def warning_set():
-  global frameinfo
-  global warning_sign
-  global runloc
-  actual_location = frameinfo.filename
-  warning_sign = warning_sign + Style.BRIGHT + "VKODE WARNING!" + Style.DIM + " The program will probably continue running after printing following warning message." + "\n    " + "VKode warning: Issue was found by " + actual_location.replace("\\", "/") + " line " + str(frameinfo.lineno) + "\n    " + "locationRun() = " + runloc + "\n    " + Style.BRIGHT
-    
-
-
-# ERRORS
 class Error:
   def __init__(self, pos_start, pos_end, error_name, details):
     self.pos_start = pos_start
@@ -202,7 +168,7 @@ class Token:
     return f'{self.type}'
 
 
-# LEXER
+# lexer
 
 
 class Lexer:
@@ -1774,7 +1740,7 @@ class BuiltInFunction(BaseFunction):
   execute_style.arg_names = ['value']
   
   def execute_print_ret(self, exec_ctx):
-    return RTResult().successF(String(str(exec_ctx.symbol_table.get('value'))))
+    return RTResult().success(String(str(exec_ctx.symbol_table.get('value'))))
   execute_print_ret.arg_names = ['value']
 
   def execute_kill(self, exec_ctx):
@@ -1790,8 +1756,8 @@ class BuiltInFunction(BaseFunction):
 
   def execute_time(self, exec_ctx):
     cas = datetime.now()
-    cas = (cas)
-    return RTResult().success(Number(cas))
+    cas = str(cas)
+    return RTResult().success(String(cas))
   execute_time.arg_names = []
 
   def execute_file(self, exec_ctx):
@@ -1800,12 +1766,12 @@ class BuiltInFunction(BaseFunction):
     return RTResult().success(Number.null)
   execute_file.arg_names = ['value']
 
-  def execute_tacet(self, exec_ctx):
+  def execute_sleep(self, exec_ctx):
     sleeptime = str(exec_ctx.symbol_table.get('number'))
     timesleeping = int(sleeptime)
     time.sleep(timesleeping)
     return RTResult().success(Number.null)
-  execute_tacet.arg_names = ['number']
+  execute_sleep.arg_names = ['number']
 
   def execute_use(self, exec_ctx):
     use = str(exec_ctx.symbol_table.get('value'))
@@ -1817,12 +1783,8 @@ class BuiltInFunction(BaseFunction):
       call = "lib\\" + use + "\\" + use + ".py"
       subprocess.call(call, shell=True)
     else:
-      global frameinfo
-      frameinfo = getframeinfo(currentframe())
-      warning_set()
-      global warning_sign
-      print(warning_sign + "Library with name " + use + " (" + vkode_location.replace("\\", "/") + "lib/" + use + "/" + use + ".py)" + " is not on the library list (libs.saver)." + Style.NORMAL)
-      warning_sign = Fore.RED + "  ! " + Fore.RESET
+      print("  ! Library with name " + use + " (lib/" + use + "/" + use + ".py)" + " was not found.")
+
               
     return RTResult().success(Number.null)
   execute_use.arg_names = ['value']
@@ -1839,46 +1801,39 @@ class BuiltInFunction(BaseFunction):
     global windowtitle
     global runloc
     global entcolor
-    global openedfile
     enwindowbutton = 0
     ensecondwindow = 0
     windowtitle = "window()"
     runloc = ""
     entcolor = 0
-    openedfile = ""
     return RTResult().success(Number.null)
   execute_end.arg_names = []
 
-  def execute_vkBuild(self, exec_ctx):
+  def execute_build(self, exec_ctx):
     # Gets intel to builder
     print("VKODE BUILDER")
     buildtake = str(exec_ctx.symbol_table.get('value'))
+    print("You need Python installed in your computer + Python installed to PATH in order to build the .vkode file.")
     print("FROM:  " + buildtake)
     buildwith = input("WITH:  ")
 
     # Checks if building filepack is available, from buildprefs.saver
-    buildcheck = open(vkode_location + "buildprefs.saver", "r")
+    buildcheck = open("buildprefs.saver", "r")
     buildread = buildcheck.read()
 
     if buildwith not in buildread:
-      global frameinfo
-      frameinfo = getframeinfo(currentframe())
-      warning_set()
-      global warning_sign
-      print(warning_sign + "Error: Can't build " + buildwith + ", format unknown." + Style.NORMAL)
-      warning_sign = Fore.RED + "  ! " + Fore.RESET
-
+      print("  ! Error: Can't build " + buildwith + ", format unknown.")
     else: # Contacting the building filepack
       print("  > Initiating building filepack, build-" + buildwith + ".py")
       # Writing shit to the Cache folder because I'm retarded please forgive me
-      cached = open(vkode_location + "cache/buildtake.saver", "w")
+      cached = open("cache/buildtake.saver", "w")
       cached.write(buildtake)
       cached.close()
       # Finally opening that filepack
-      subprocess.call(vkode_location + "build-" + buildwith + ".py", shell=True)
+      subprocess.call("build-" + buildwith + ".py", shell=True)
 
     return RTResult().success(Number.null)
-  execute_vkBuild.arg_names = ['value']
+  execute_build.arg_names = ['value']
 
   def execute_webdownload(self, exec_ctx):
     downloadurl = str(exec_ctx.symbol_table.get('value'))
@@ -1913,35 +1868,19 @@ class BuiltInFunction(BaseFunction):
   execute_location.arg_names = []
 
   def execute_vkRunlog(self, exec_ctx):
-    move_f = open(vkode_location +"devview/files/savers/position.saver")
-    move = move_f.read()
-    move_f.close()
-    print("Current switch position: " + move)
-    move_f = open(vkode_location + "log.txt", "r")
+    #move_f = open("devview/files/savers/position.saver")
+    #move = move_f.read()
+    #move_f.close()
+    #print("Current switch position: " + move)
+    move_f = open("log.txt", "r")
     move = move_f.read()
     print(move)
     move_f.close()
     return RTResult().success(Number.null)
   execute_vkRunlog.arg_names = []
 
-  def execute_vkStats(self, exec_ctx):
-    move_f = open(vkode_location + "devview/files/stats/stats_console.saver", "r")
-    print("You've opened Console " + move_f.read() + " times")
-    move_f.close()
-    move_f = open(vkode_location + "devview/files/stats/stats_run.saver", "r")
-    print("You've used run() " + move_f.read() + " times")
-    move_f.close()
-    move_f = open(vkode_location + "devview/files/stats/stats_vkode.saver", "r")
-    print("vkode.py was called " + move_f.read() + " times")
-    move_f.close()
-    move_f = open(vkode_location + "devview/files/stats/stats_builds.saver", "r")
-    print("You've successfuly builded your apps " + move_f.read() + " times!")
-    move_f.close()
-    return RTResult().success(Number.null)
-  execute_vkStats.arg_names = []
-
   def execute_vkS(self, exec_ctx):
-    move_f = open(vkode_location + "s.saver")
+    move_f = open("s.saver")
     move = move_f.read()
     move_f.close()
     print(move)
@@ -1952,12 +1891,7 @@ class BuiltInFunction(BaseFunction):
     global runloc
 
     if runloc == "":
-      global frameinfo
-      frameinfo = getframeinfo(currentframe())
-      warning_set()
-      global warning_sign
-      print(warning_sign + "You have to use run() first." + Style.NORMAL)
-      warning_sign = Fore.RED + "  ! " + Fore.RESET
+      print("  ! You have to use run() first.")
     else:
       return RTResult().success(String(runloc))
   execute_locationRun.arg_names = []
@@ -1980,60 +1914,19 @@ class BuiltInFunction(BaseFunction):
     return RTResult().success(Number(move_2))
   execute_varTointeger.arg_names = ['value']
 
-  global rreplace_location
-  rreplace_location = 0
-  global rreplace_number
-  rreplace_number = 0
-
-  def execute_varReplaceSet(self, exec_ctx):
-    move = str(exec_ctx.symbol_table.get('value'))
-    global rreplace_location
-    global rreplace_number
-    if move[0] == "-":
-      rreplace_location = 0
-      return RTResult().success(Number.null)
-    elif move[-1] != "-":
-      rreplace_location = 1
-      return RTResult().success(Number.null)
-    
-
-  execute_varReplaceSet.arg_names = ['value']
-
-  def execute_varReplace(self, exec_ctx): # 1984 -- function replacing shit needed
-    move = str(exec_ctx.symbol_table.get('value'))
-    move_a,move_b = move.split('-', 1)
-    if move_a == '-':
-      return RTResult().success(String("jupi"))
-
-    
-  execute_varReplace.arg_names = ['value']
-
   def execute_vkUpdate(self, exec_ctx):
     print("VKODE UPDATES")
     print("Checking for updates...")
-    from vksettings import versioncheck
+    versioncheck = "http://smartmark.jecool.net/cloud/vkode/ver/0001.txt"
+    verze = 0
     verze = urlopen(versioncheck).read()
-    verzedek = int(verze.decode('utf-8'))
-    verzelocal_f = open(vkode_location + "version.saver", "r")
-    verzelocal = int(verzelocal_f.read())
-    if verzedek == verzelocal:
+    verzedek = verze.decode('utf-8')
+    if verzedek == "1":
       print("Your VK version is up to date, everything is ok!")
-    elif verzedek > verzelocal:
+    if verzedek == "2":
       print("YOUR VKODE IS NOT UPDATED!")
-      ask = 1
-      while ask == 1:
-          print("  > PLEASE READ CAREFULLY: If you proceed, new version of 'VKode stable Windows build " + str(verzedek) + "' will be downloaded and installed. If you're using other distribution of VKode (like source files), you'll have to download it and reinstall again manually. Also, we recommend you to change the directory to somewhere safe - VKode will download the file package into the current directory. It might take a minute. Do you wish to continue?")
-          yesno = input("y/n > ")
-          if yesno == "y":
-              print("  > Proceeding, please wait")
-              subprocess.call(vkode_location + "update.py", shell=True)
-              ask = 0
-          elif yesno == "n":
-              print("  > Cancelling process")
-              ask = 0
-          else:
-              print("  > yes or no expected, please try again")
-      ask = 0
+      webbrowser.open("https:/vkode.gq/update", new=2)
+      print("VKode has opened https://vkode.gq/update in your browser. Please follow instructions there to update your VKode")
     return RTResult().success(Number.null)
   execute_vkUpdate.arg_names = []
 
@@ -2048,6 +1941,7 @@ class BuiltInFunction(BaseFunction):
     return RTResult().success(Number.null)
   execute_editfile.arg_names = ['value']
 
+  global openedfile
 
   def execute_open(self, exec_ctx):
     global openedfile
@@ -2058,51 +1952,19 @@ class BuiltInFunction(BaseFunction):
   def execute_fileWrite(self, exec_ctx):
     global openedfile
     move = str(exec_ctx.symbol_table.get('value'))
-    if openedfile != "":
-      fileopen = open(openedfile, "w")
-      fileopen.write(move)
-      fileopen.close()
-    else:
-      global frameinfo
-      frameinfo = getframeinfo(currentframe())
-      warning_set()
-      global warning_sign
-      print(warning_sign + "Cannot write the file, file location has not been set yet. Set the file location using open()" + Style.NORMAL)
-      warning_sign = Fore.RED + "  ! " + Fore.RESET
+    fileopen = open(openedfile, "w")
+    fileopen.write(move)
+    fileopen.close()
     return RTResult().success(Number.null)
   execute_fileWrite.arg_names = ['value']
 
   def execute_fileRead(self, exec_ctx):
     global openedfile
-    if openedfile != "":
-      fileopen = open(openedfile, "r")
-      read = fileopen.read()
-      return RTResult().success(String(read))
-    else:
-      global frameinfo
-      frameinfo = getframeinfo(currentframe())
-      warning_set()
-      global warning_sign
-      print(warning_sign + "Cannot read the file, file location has not been set yet. Set the file location using open()" + Style.NORMAL)
-      warning_sign = Fore.RED + "  ! " + Fore.RESET
-  execute_fileRead.arg_names = []
-
-  def execute_fileAppend(self, exec_ctx):
-    global openedfile
     move = str(exec_ctx.symbol_table.get('value'))
-    if openedfile != "":
-      fileopen = open(openedfile, "a")
-      fileopen.write(move)
-      fileopen.close()
-    else:
-      global frameinfo
-      frameinfo = getframeinfo(currentframe())
-      warning_set()
-      global warning_sign
-      print(warning_sign + "Cannot append the file, file location has not been set yet. Set the file location using open()" + Style.NORMAL)
-      warning_sign = Fore.RED + "  ! " + Fore.RESET
-    return RTResult().success(Number.null)
-  execute_fileAppend.arg_names = ['value']
+    fileopen = open(openedfile, "r")
+    read = fileopen.read()
+    return RTResult().success(String(read))
+  execute_fileRead.arg_names = ['value']
   
   def execute_web(self, exec_ctx):
     openweburl = str(exec_ctx.symbol_table.get('value'))
@@ -2146,19 +2008,14 @@ class BuiltInFunction(BaseFunction):
     global secondbuttonvalue
     global enwindowbutton
     if enwindowbutton == 0:
-      global frameinfo
-      frameinfo = getframeinfo(currentframe())
-      warning_set()
-      global warning_sign
-      print(warning_sign + 'Error: First button value has not been set. Please set the button first, windowSetbutton("")' + Style.NORMAL)
-      warning_sign = Fore.RED + "  ! " + Fore.RESET
-    elif enwindowbutton == 1:
+      print('Error: First button value has not been set. Please set the button first, windowSetbutton("")')
+    if enwindowbutton == 1:
       secondbuttontext = str(exec_ctx.symbol_table.get('value'))
       secondbuttonvalue = secondbuttontext
       ensecondwindow = 1
       if secondbuttontext == "":
         ensecondwindow = 0
-      elif secondbuttontext == "/clear/":
+      if secondbuttontext == "/clear/":
         ensecondwindow = 0
     return RTResult().success(Number.null)
   execute_windowSetsecondbutton.arg_names = ['value']
@@ -2171,24 +2028,13 @@ class BuiltInFunction(BaseFunction):
     windowtext = str(exec_ctx.symbol_table.get('value'))
     if enwindowbutton == 0:
       pymsgbox.alert(windowtext, windowtitle)
-      return RTResult().success(Number(1))
-    elif enwindowbutton == 1:
+    if enwindowbutton == 1:
       if ensecondwindow == 0:
         pymsgbox.alert(windowtext, windowtitle, windowbutton)
-        return RTResult().success(Number(1))
-      elif ensecondwindow == 1:
-        window_b = pymsgbox.confirm(windowtext, windowtitle, buttons=[windowbutton, secondbuttonvalue])
-        if window_b == windowbutton:
-          return RTResult().success(Number(1))
-        elif window_b == secondbuttonvalue:
-          return RTResult().success(Number(2))
+      if ensecondwindow == 1:
+        pymsgbox.confirm(windowtext, windowtitle, buttons=[windowbutton, secondbuttonvalue])
+    return RTResult().success(Number.null)
   execute_window.arg_names = ['value']
-
-  def execute_windowInput(self, exec_ctx):
-    global windowtitle
-    window_c = pymsgbox.prompt(windowtitle, default='This reference dates this example.')
-    return RTResult().success(string(str(window_c)))
-  execute_windowInput.arg_names = []
   
   def execute_vkSettings(self, exec_ctx):
     print("  > Please wait, loading vksettings.py")
@@ -2360,9 +2206,9 @@ class BuiltInFunction(BaseFunction):
     fn = fn.value
 
     logtext = fn
-    position = open(vkode_location + "devview/files/savers/position.saver", "r")
-    logposition = position.read()
-    position.close()
+    #position = open("devview/files/savers/position.saver", "r")
+    #logposition = position.read()
+    #position.close()
 
     if ":" not in logtext:
       pathlocation = __file__
@@ -2372,46 +2218,39 @@ class BuiltInFunction(BaseFunction):
 
     runloc = logtext
     runloc = runloc.replace("\\", "/")
+    #runloc = runloc[:-9] # 1984 -- DELETE AFTER "/" NEEDED ON 2206
 
-    with open(vkode_location + "log.txt", "a") as logt:
-      logt.write("\n")
-      cas = datetime.now()
-      casp = str(cas)
-      logwrite = (logtext + " - " + casp)
-      logt.write(logwrite)
-      logt.close()
+    #with open("log.txt", "a") as logt:
+    #  logt.write("\n")
+    #  cas = datetime.now()
+    #  casp = str(cas)
+    #  logwrite = (logtext + " - " + casp)
+    #  logt.write(logwrite)
+    #  logt.close()
     
-    if logposition == "1":
-      devview1 = open(vkode_location + "devview/files/savers/1.saver", "w")
-      devview1.write(logtext)
-      devview1.close()
-    elif logposition == "2":
-      devview2 = open(vkode_location + "devview/files/savers/2.saver", "w")
-      devview2.write(logtext)
-      devview2.close()
-    elif logposition == "3":
-      devview3 = open(vkode_location + "devview/files/savers/3.saver", "w")
-      devview3.write(logtext)
-      devview3.close()
+    #if logposition == "1":
+    #  devview1 = open("devview/files/savers/1.saver", "w")
+    #  devview1.write(logtext)
+    #  devview1.close()
+    #if logposition == "2":
+    #  devview2 = open("devview/files/savers/2.saver", "w")
+    #  devview2.write(logtext)
+    #  devview2.close()
+    #if logposition == "3":
+    #  devview3 = open("devview/files/savers/3.saver", "w")
+    #  devview3.write(logtext)
+    #  devview3.close()
 
-    wposition = open(vkode_location + "devview/files/savers/position.saver", "w")
-    if logposition == "1":
-      wposition.write("2")
-    elif logposition == "2":
-      wposition.write("3")
-    elif logposition == "3":
-      wposition.write("1")
-    wposition.close()
+    #wposition = open("devview/files/savers/position.saver", "w")
+    #if logposition == "1":
+    #  wposition.write("2")
+    #if logposition == "2":
+    #  wposition.write("3")
+    #if logposition == "3":
+    #  wposition.write("1")
+    #wposition.close()
 
-    move_f = open(vkode_location + "devview/files/stats/stats_run.saver", "r")
-    move = move_f.read()
-    move_int = int(move)
-    move_f.close()
-    move_int = move_int + 1
-    move = str(move_int)
-    move_f = open(vkode_location + "devview/files/stats/stats_run.saver", "w")
-    move_f.write(move)
-    move_f.close()
+
 
     try:
       with open(fn, "r") as f:
@@ -2466,13 +2305,13 @@ BuiltInFunction.file        = BuiltInFunction("file")
 BuiltInFunction.time        = BuiltInFunction("time")
 BuiltInFunction.vkSettings  = BuiltInFunction("vkSettings")
 BuiltInFunction.vkDevview   = BuiltInFunction("vkDevview")
-BuiltInFunction.tacet       = BuiltInFunction("tacet")
+BuiltInFunction.sleep       = BuiltInFunction("sleep")
 BuiltInFunction.printstyle  = BuiltInFunction("printstyle")
 BuiltInFunction.printstyleSetcolor  = BuiltInFunction("printstyleSetcolor")
 BuiltInFunction.style       = BuiltInFunction("style")
 BuiltInFunction.devview     = BuiltInFunction("devview")
 BuiltInFunction.end         = BuiltInFunction("end")
-BuiltInFunction.vkBuild       = BuiltInFunction("vkBuild")
+BuiltInFunction.build       = BuiltInFunction("build")
 BuiltInFunction.use         = BuiltInFunction("use")
 BuiltInFunction.open        = BuiltInFunction("open")
 BuiltInFunction.fileWrite   = BuiltInFunction("fileWrite")
@@ -2484,10 +2323,6 @@ BuiltInFunction.python      = BuiltInFunction("python")
 BuiltInFunction.locationRun = BuiltInFunction("locationRun")
 BuiltInFunction.varTostring = BuiltInFunction("varTostring")
 BuiltInFunction.varTointeger = BuiltInFunction("varTointeger")
-BuiltInFunction.vkStats     = BuiltInFunction("vkStats")
-BuiltInFunction.varReplace  = BuiltInFunction("varReplace")
-BuiltInFunction.fileAppend  = BuiltInFunction("fileAppend")
-BuiltInFunction.windowInput = BuiltInFunction("windowInput")
 
 # context
 
@@ -2808,13 +2643,13 @@ global_symbol_table.set("file", BuiltInFunction.file)
 global_symbol_table.set("time", BuiltInFunction.time)
 global_symbol_table.set("vkSettings", BuiltInFunction.vkSettings)
 global_symbol_table.set("vkDevview", BuiltInFunction.vkDevview)
-global_symbol_table.set("tacet", BuiltInFunction.tacet)
+global_symbol_table.set("sleep", BuiltInFunction.sleep)
 global_symbol_table.set("printstyle", BuiltInFunction.printstyle)
 global_symbol_table.set("printstyleSetcolor", BuiltInFunction.printstyleSetcolor)
 global_symbol_table.set("style", BuiltInFunction.style)
 global_symbol_table.set("devview", BuiltInFunction.devview)
 global_symbol_table.set("end", BuiltInFunction.end)
-global_symbol_table.set("vkBuild", BuiltInFunction.vkBuild)
+global_symbol_table.set("build", BuiltInFunction.build)
 global_symbol_table.set("use", BuiltInFunction.use)
 global_symbol_table.set("open", BuiltInFunction.open)
 global_symbol_table.set("fileWrite", BuiltInFunction.fileWrite)
@@ -2825,10 +2660,6 @@ global_symbol_table.set("python", BuiltInFunction.python)
 global_symbol_table.set("locationRun", BuiltInFunction.locationRun)
 global_symbol_table.set("varTostring", BuiltInFunction.varTostring)
 global_symbol_table.set("varTointeger", BuiltInFunction.varTointeger)
-global_symbol_table.set("vkStats", BuiltInFunction.vkStats)
-global_symbol_table.set("varReplace", BuiltInFunction.varReplace)
-global_symbol_table.set("fileAppend", BuiltInFunction.fileAppend)
-global_symbol_table.set("windowInput", BuiltInFunction.windowInput)
 
 
 def run(fn, text):

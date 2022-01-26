@@ -7,6 +7,7 @@
 import os # Library needed to generate the Shortcut
 import pathlib # Library needed to get the path
 import time
+from datetime import datetime
 from unicodedata import name
 import shutil
 
@@ -105,6 +106,29 @@ copy_vkbuild_r.close()
 copy_vkbuild_w = open(result + buildas + ".vkbuild", "w")
 copy_vkbuild_w.write(copy_vkbuild)
 copy_vkbuild_w.close()
+
+from vkode import vkode_location
+from vksettings import statelocation
+
+stats_f = open(vkode_location + "devview/files/stats/stats_builds.saver", "r")
+stats = int(stats_f.read())
+stats = stats + 1
+stats_f.close()
+stats_f = open(vkode_location + "devview/files/stats/stats_builds.saver", "w")
+stats_f.write(str(stats))
+stats_f.close()
+
+state = open(vkode_location + statelocation, "a")
+cas = datetime.now()
+state.write(str(cas))
+state.write("\nWAKE REASON: \n" + "finished build, " + buildtake + " " + result)
+state.write("\nINCLUDES:\n")
+state.write("vkode" + "(" + "N/A" + ")" + "N/A" + "\n" + "N/A" + "(" + "N/A" + ")" + "N/A" + "\n" + "console" + "(" + "N/A" + ")" + "N/A" + "\n")
+#state.write("ALSO MAY INCLUDE LIBRARIES:\n")
+state.write("STATUS:\n")
+cas = datetime.now()
+state.write(str(cas) + "\n\n")
+state.close()
 
 time.sleep(0.2)
 end_time = time.time() # Stops the timer
