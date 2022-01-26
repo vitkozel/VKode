@@ -2,7 +2,9 @@ from codecs import replace_errors
 from curses import window
 from distutils.log import error
 from logging import warning
-from time import time # For time
+from time import time
+
+from numpy import number # For time
 from strings_with_arrows import * # External source
 import string
 import os # Should be installed by default
@@ -1772,7 +1774,7 @@ class BuiltInFunction(BaseFunction):
   execute_style.arg_names = ['value']
   
   def execute_print_ret(self, exec_ctx):
-    return RTResult().success(String(str(exec_ctx.symbol_table.get('value'))))
+    return RTResult().successF(String(str(exec_ctx.symbol_table.get('value'))))
   execute_print_ret.arg_names = ['value']
 
   def execute_kill(self, exec_ctx):
@@ -1788,8 +1790,8 @@ class BuiltInFunction(BaseFunction):
 
   def execute_time(self, exec_ctx):
     cas = datetime.now()
-    cas = str(cas)
-    return RTResult().success(String(cas))
+    cas = (cas)
+    return RTResult().success(Number(cas))
   execute_time.arg_names = []
 
   def execute_file(self, exec_ctx):
