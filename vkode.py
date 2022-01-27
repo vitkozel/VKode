@@ -42,6 +42,9 @@ openedfile = ""
 global runloc
 runloc = ""
 
+debugl = Fore.YELLOW + ">>> " + Fore.RESET
+
+
 
 
 # WARNINGS
@@ -1809,7 +1812,7 @@ class BuiltInFunction(BaseFunction):
 
   def execute_use(self, exec_ctx):
     use = str(exec_ctx.symbol_table.get('value'))
-    move_f = open("libs.saver", "r")
+    move_f = open(vkode_location + "libs.saver", "r")
     move = move_f.read()
     #print(move)
     move_f.close()
@@ -1837,13 +1840,11 @@ class BuiltInFunction(BaseFunction):
     global enwindowbutton
     global ensecondwindow
     global windowtitle
-    global runloc
     global entcolor
     global openedfile
     enwindowbutton = 0
     ensecondwindow = 0
     windowtitle = "window()"
-    runloc = ""
     entcolor = 0
     openedfile = ""
     return RTResult().success(Number.null)
@@ -1958,6 +1959,7 @@ class BuiltInFunction(BaseFunction):
       global warning_sign
       print(warning_sign + "You have to use run() first." + Style.NORMAL)
       warning_sign = Fore.RED + "  ! " + Fore.RESET
+      return RTResult().success(Number.null)
     else:
       return RTResult().success(String(runloc))
   execute_locationRun.arg_names = []
@@ -2343,9 +2345,6 @@ class BuiltInFunction(BaseFunction):
     return RTResult().success(Number(len(list_.elements)))
   execute_len.arg_names = ["list"]
 
-  global runloc
-  runloc = ""
-
   def execute_run(self, exec_ctx):
     fn = exec_ctx.symbol_table.get("fn")
     
@@ -2356,7 +2355,6 @@ class BuiltInFunction(BaseFunction):
         exec_ctx
       ))
 
-    global runloc
     fn = fn.value
 
     logtext = fn
@@ -2370,8 +2368,10 @@ class BuiltInFunction(BaseFunction):
       logtext = pathlocation + logtext
       logtext = logtext.replace("\\", "/")
 
+    global runloc
     runloc = logtext
     runloc = runloc.replace("\\", "/")
+    #print(debugl + runloc)
 
     with open(vkode_location + "log.txt", "a") as logt:
       logt.write("\n")
