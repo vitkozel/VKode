@@ -3,6 +3,7 @@ print("VKode installer")
 print("")
 from asyncio import SubprocessProtocol
 from turtle import clear
+from numpy import rint
 from pymsgbox import *
 import tkinter
 from tkinter import filedialog
@@ -14,7 +15,9 @@ import shutil
 import zipfile
 import winshell
 from pathlib import Path
-#import os, winshell, win32com.client, Pythoncom
+import os
+import winshell
+import sys
 directory = __file__
 
 print(" 1.  Hello! Thank you for your interest in VKode.")
@@ -50,7 +53,7 @@ def dir():
             makedir = 0
             proceed = 1
         else:
-            alert('Chosen directory already exists. Please, clear the directory or choose other location.', 'VKode Installation Error')
+            alert('Chosen directory already exists. Please clear the directory or choose other location.', 'VKode Installation Error')
             dir()
     else:
         proceed = 1
@@ -67,7 +70,9 @@ def dir():
             os.mkdir(file_path_variable)
         file_path_variable = file_path_variable + "/"
 
-        confirm_window = confirm(text='VKode will be installed to ' + file_path_variable + "\nDo you wish to proceed?", title='VKode installer', buttons=['INSTALL', 'Change directory', 'Cancel installation'])
+        global shortcut_window
+        shortcut_window = confirm(text='Do you wish to also install a Start menu shortcut?', title='VKode installer', buttons=['YES', 'No'])
+        confirm_window = confirm(text='VKode will be installed to ' + file_path_variable + "\nGenerate shorcut = " +  shortcut_window + "\nDo you wish to proceed?", title='VKode installer', buttons=['INSTALL', 'Change directory', 'Cancel installation'])
         if confirm_window == "Change directory":
             print("Change directory requested")
             dir()
@@ -86,6 +91,7 @@ file_name = str(verze) + ".zip"
 download_url = "http://smartmark.jecool.net/cloud/vkode/package/" + file_name
 print("VKODE Windows Stable (from installer), build " + verze)
 
+
 wget.download(download_url)
 print("  DONE")
 
@@ -103,24 +109,30 @@ os.remove(file_path_variable + file_name)
 
 print("Package extracted")
 
-desktop = Path(winshell.desktop())
-miniconda_base = Path(
-    winshell.folder('CSIDL_LOCAL_APPDATA')) / 'Continuum' / 'miniconda3'
-win32_cmd = str(Path(winshell.folder('CSIDL_SYSTEM')) / 'cmd.exe')
-icon = str(file_path_variable + "icon.ico")
+if shortcut_window == "YES":
+    print("Generating shortcut at" + str(winshell.desktop()))
+    link_filepath = os.path.join(winshell.desktop(), "VKode Console.lnk")
+    with winshell.shortcut(link_filepath) as link:
+        link.path = file_path_variable + "console.exe"
+        link.description = "Start VKode Console"
+        #link.icon_location = icon_path
+        #link.arguments = "-m winshell"
 
-my_working = str(Path(winshell.folder(file_path_variable + "console.py")) / "py_work")
-link_filepath = str(desktop / "VKode Console.lnk")
+    print("Generating shortcut at" + str(winshell.start_menu()))
+    link_filepath = os.path.join(winshell.start_menu(), "VKode Console.lnk")
+    with winshell.shortcut(link_filepath) as link:
+        link.path = file_path_variable + "console.exe"
+        link.description = "Start VKode Console"
+else:
+    print("Skipping shortcut generating")
 
-# Build up all the arguments to cmd.exe
-# Use /K so that the command prompt will stay open
-arg_str = "/K " + str(miniconda_base / "Scripts" / "activate.bat") + " " + str(
-    miniconda_base / "envs" / "work")
+print("")
+print(" 7. Installation completed, you can find VKode at " + file_path_variable)
+print("")
 
-# Create the shortcut on the desktop
-with winshell.shortcut(link_filepath) as link:
-    link.path = win32_cmd
-    link.description = "VKode Console"
-    link.arguments = arg_str
-    link.icon_location = (icon, 0)
-    link.working_directory = my_working
+final = confirm(text='Thank you, VKode was succesfully installed', title='VKode installed!', buttons=['START VKODE', 'Exit'])
+if final == "START VKODE":
+    print("Opening VKode")
+    os.startfile(file_path_variable + "console.exe")
+else:
+    print("Exiting installation")
