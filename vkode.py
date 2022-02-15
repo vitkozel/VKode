@@ -1926,7 +1926,8 @@ class BuiltInFunction(BaseFunction):
   execute_vkRunlog.arg_names = []
 
   def execute_vkStats(self, exec_ctx):
-    move_f = open(vkode_location + "devview/files/stats/stats_console.saver", "r")
+    move_xd = "devview\\files\\stats\\stats_console.saver"
+    move_f = open(vkode_location + move_xd, "r")
     print("You've opened Console " + move_f.read() + " times")
     move_f.close()
     move_f = open(vkode_location + "devview/files/stats/stats_run.saver", "r")
@@ -1936,7 +1937,7 @@ class BuiltInFunction(BaseFunction):
     print("vkode.py was called " + move_f.read() + " times")
     move_f.close()
     move_f = open(vkode_location + "devview/files/stats/stats_builds.saver", "r")
-    print("You've successfuly builded your apps " + move_f.read() + " times!")
+    print("You've successfuly builded your apps " + move_f.read() + " times")
     move_f.close()
     return RTResult().success(Number.null)
   execute_vkStats.arg_names = []
