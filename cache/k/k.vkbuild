@@ -1,3 +1,0 @@
-printstyleSetcolor("green")
-printstyle("Hello!")
-end()

@@ -1943,7 +1943,8 @@ class BuiltInFunction(BaseFunction):
   execute_vkStats.arg_names = []
 
   def execute_vkS(self, exec_ctx):
-    move_f = open(vkode_location + "s.saver")
+    move_location = vkode_location + "s.saver"
+    move_f = open(move_location)
     move = move_f.read()
     move_f.close()
     print(move)

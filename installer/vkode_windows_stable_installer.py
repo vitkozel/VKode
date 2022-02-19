@@ -19,6 +19,7 @@ import os
 import winshell
 import sys
 directory = __file__
+import webbrowser
 
 print(" 1.  Hello! Thank you for your interest in VKode.")
 alert(text='Hello!\nThank you for your interest in VKode.', title='Install VKode', button='OK')
@@ -127,6 +128,7 @@ else:
     print("Skipping shortcut generating")
 
 print("")
+webbrowser.open('http://vkode.xyz/thankyou.html')
 print(" 7. Installation completed, you can find VKode at " + file_path_variable)
 print("")
 
