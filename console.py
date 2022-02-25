@@ -169,7 +169,7 @@ while True:
 	print(nula)
 
 	if noticeverafter == 1:
-		print("YOUR VKODE IS NOT UPDATED! Update VKode, vkupdate()")
+		print(debugl + "YOUR VKODE IS NOT UPDATED! Update VKode, vkupdate()")
 
 	print(nula)
 
