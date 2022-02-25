@@ -159,7 +159,7 @@ while True:
 
     vkode_text = "/\   /\   | | __  ___    __| |  ___\n\ \ / /   | |/ / / _ \  / _` | / _ |)\n \ V /    |   < | (_) || (_| ||  __/\n  \_/     |_|\_\ \___/  \__,_| \___|"
     home_subs = "Powered by VKode, Created with <3 in EU, twitter.com/vkode_\nvkode.xyz, docs.vkode.xyz"
-    
+    home = vkode_text + "\n" + home_subs
 
 	print('/\   /\   | | __  ___    __| |  ___ ')
 	print('\ \ / /   | |/ / / _ \  / _` | / _ |')
