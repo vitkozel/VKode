@@ -158,7 +158,7 @@ while True:
 	print(nula)
 
     vkode_text = "/\   /\   | | __  ___    __| |  ___\n\ \ / /   | |/ / / _ \  / _` | / _ |)\n \ V /    |   < | (_) || (_| ||  __/\n  \_/     |_|\_\ \___/  \__,_| \___|"
-    home = "\nvkode.xyz, docs.vkode.xyz"
+    home = "Powered by VKode, Created with <3 in EU, twitter.com/vkode_\nvkode.xyz, docs.vkode.xyz"
 
 	print('/\   /\   | | __  ___    __| |  ___ ')
 	print('\ \ / /   | |/ / / _ \  / _` | / _ |')
