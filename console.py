@@ -165,7 +165,7 @@ while True:
 
 
 	print('Powered by VKode, Created with <3 in EU, twitter.com/vkode_')
-	print('www.vkode.xyz')
+	print('www.vkode.xyz, docs.vkode.xyz')
 	print(nula)
 
 	if noticeverafter == 1:
