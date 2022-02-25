@@ -161,15 +161,7 @@ while True:
     home_subs = "Powered by VKode, Created with <3 in EU, twitter.com/vkode_\nvkode.xyz, docs.vkode.xyz"
     home = vkode_text + "\n" + home_subs
 
-	print('/\   /\   | | __  ___    __| |  ___ ')
-	print('\ \ / /   | |/ / / _ \  / _` | / _ |')
-	print(' \ V /    |   < | (_) || (_| ||  __/')
-	print("  \_/     |_|\_\ \___/  \__,_| \___|")
-
-
-
-	print('Powered by VKode, Created with <3 in EU, twitter.com/vkode_')
-	print('vkode.xyz, docs.vkode.xyz')
+	print(home)
 	print(nula)
 
 	if noticeverafter == 1:
