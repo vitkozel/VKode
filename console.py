@@ -69,6 +69,7 @@ if skipstartdelay == 0:
 import vkode
 global warning_sign
 warning_sign = Fore.RED + "  ! " + Fore.RESET
+debugl = Fore.YELLOW + ">>> " + Fore.RESET
 
 print('  > VKode resources loaded,  ', cas)
 
@@ -156,19 +157,15 @@ while True:
 
 	print(nula)
 
-	print('/\   /\   | | __  ___    __| |  ___ ')
-	print('\ \ / /   | |/ / / _ \  / _` | / _ |')
-	print(' \ V /    |   < | (_) || (_| ||  __/')
-	print("  \_/     |_|\_\ \___/  \__,_| \___|")
+    vkode_text = "/\   /\   | | __  ___    __| |  ___\n\ \ / /   | |/ / / _ \  / _` | / _ |)\n \ V /    |   < | (_) || (_| ||  __/\n  \_/     |_|\_\ \___/  \__,_| \___|"
+    home_subs = "Powered by VKode, Created with <3 in EU, twitter.com/vkode_\nvkode.xyz, docs.vkode.xyz"
+    home = vkode_text + "\n" + home_subs
 
-
-
-	print('Powered by VKode, Created with <3 in EU, twitter.com/vkode_')
-	print('www.vkode.xyz')
+	print(home)
 	print(nula)
 
 	if noticeverafter == 1:
-		print("YOUR VKODE IS NOT UPDATED! Update VKode, vkupdate()")
+		print(debugl + "YOUR VKODE IS NOT UPDATED! Update VKode Stable, vkupdate()")
 
 	print(nula)
 
@@ -177,15 +174,10 @@ while True:
 			time.sleep(0.6)
 		time.sleep(0.15)
 		clearConsole()
-		print('/\   /\   | | __  ___    __| |  ___ ')
-		print('\ \ / /   | |/ / / _ \  / _` | / _ |')
-		print(' \ V /    |   < | (_) || (_| ||  __/')
-		print("  \_/     |_|\_\ \___/  \__,_| \___|")
-		print('Powered by VKode, Created with <3 by Vit Kozel in Czechia, twitter.com/vkode_')
-		print('www.vkode.gq')
+		print(home )
 		print(nula)
 		if noticeverafter == 1:
-			print("YOUR VKODE IS NOT UPDATED! Update VKode, vkupdate()")
+			print("YOUR VKODE IS NOT UPDATED! Update VKode Stable, vkupdate()")
 
 
 	if vblock == 1:
@@ -196,7 +188,6 @@ while True:
 		print("  > Vblock is set to 2, killing the Console immediately!")
 		pymsgbox.alert('VBlock is blocking the Console. If you have downloaded the Dev package, try changing Vblock value in vksettings.py', 'Vblock error')
 		exit()
-
 	break
 
 
