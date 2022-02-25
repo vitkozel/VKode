@@ -2360,60 +2360,60 @@ class BuiltInFunction(BaseFunction):
     fn = fn.value
 
     logtext = fn
-    position = open(vkode_location + "devview/files/savers/position.saver", "r")
-    logposition = position.read()
-    position.close()
+    #position = open(vkode_location + "devview/files/savers/position.saver", "r")
+    #logposition = position.read()
+    #position.close()
 
-    if ":" not in logtext:
-      pathlocation = __file__
-      pathlocation = pathlocation[:-8]
-      logtext = pathlocation + logtext
-      logtext = logtext.replace("\\", "/")
+    #if ":" not in logtext:
+    #  pathlocation = __file__
+    #  pathlocation = pathlocation[:-8]
+    #  logtext = pathlocation + logtext
+    #  logtext = logtext.replace("\\", "/")
 
-    global runloc
-    runloc = logtext
-    runloc = runloc.replace("\\", "/")
+    #global runloc
+    #runloc = logtext
+    #runloc = runloc.replace("\\", "/")
     #print(debugl + runloc)
 
-    with open(vkode_location + "log.txt", "a") as logt:
-      logt.write("\n")
-      cas = datetime.now()
-      casp = str(cas)
-      logwrite = (logtext + " - " + casp)
-      logt.write(logwrite)
-      logt.close()
+    #with open(vkode_location + "log.txt", "a") as logt:
+    #  logt.write("\n")
+    #  cas = datetime.now()
+    #  casp = str(cas)
+    #  logwrite = (logtext + " - " + casp)
+    #  logt.write(logwrite)
+    #  logt.close()
     
-    if logposition == "1":
-      devview1 = open(vkode_location + "devview/files/savers/1.saver", "w")
-      devview1.write(logtext)
-      devview1.close()
-    elif logposition == "2":
-      devview2 = open(vkode_location + "devview/files/savers/2.saver", "w")
-      devview2.write(logtext)
-      devview2.close()
-    elif logposition == "3":
-      devview3 = open(vkode_location + "devview/files/savers/3.saver", "w")
-      devview3.write(logtext)
-      devview3.close()
+    #if logposition == "1":
+    #  devview1 = open(vkode_location + "devview/files/savers/1.saver", "w")
+    #  devview1.write(logtext)
+    #  devview1.close()
+    #elif logposition == "2":
+    #  devview2 = open(vkode_location + "devview/files/savers/2.saver", "w")
+    #  devview2.write(logtext)
+    #  devview2.close()
+    #elif logposition == "3":
+    #  devview3 = open(vkode_location + "devview/files/savers/3.saver", "w")
+    #  devview3.write(logtext)
+    #  devview3.close()
 
-    wposition = open(vkode_location + "devview/files/savers/position.saver", "w")
-    if logposition == "1":
-      wposition.write("2")
-    elif logposition == "2":
-      wposition.write("3")
-    elif logposition == "3":
-      wposition.write("1")
-    wposition.close()
+    #wposition = open(vkode_location + "devview/files/savers/position.saver", "w")
+    #if logposition == "1":
+    #  wposition.write("2")
+    #elif logposition == "2":
+    #  wposition.write("3")
+    #elif logposition == "3":
+    #  wposition.write("1")
+    #wposition.close()
 
-    move_f = open(vkode_location + "devview/files/stats/stats_run.saver", "r")
-    move = move_f.read()
-    move_int = int(move)
-    move_f.close()
-    move_int = move_int + 1
-    move = str(move_int)
-    move_f = open(vkode_location + "devview/files/stats/stats_run.saver", "w")
-    move_f.write(move)
-    move_f.close()
+    #move_f = open(vkode_location + "devview/files/stats/stats_run.saver", "r")
+    #move = move_f.read()
+    #move_int = int(move)
+    #move_f.close()
+    #move_int = move_int + 1
+    #move = str(move_int)
+    #move_f = open(vkode_location + "devview/files/stats/stats_run.saver", "w")
+    #move_f.write(move)
+    #move_f.close()
 
     try:
       with open(fn, "r") as f:
