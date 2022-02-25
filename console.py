@@ -174,12 +174,7 @@ while True:
 			time.sleep(0.6)
 		time.sleep(0.15)
 		clearConsole()
-		print('/\   /\   | | __  ___    __| |  ___ ')
-		print('\ \ / /   | |/ / / _ \  / _` | / _ |')
-		print(' \ V /    |   < | (_) || (_| ||  __/')
-		print("  \_/     |_|\_\ \___/  \__,_| \___|")
-		print('Powered by VKode, Created with <3 by Vit Kozel in Czechia, twitter.com/vkode_')
-		print('www.vkode.gq')
+		print(home)
 		print(nula)
 		if noticeverafter == 1:
 			print("YOUR VKODE IS NOT UPDATED! Update VKode, vkupdate()")
