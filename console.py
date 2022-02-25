@@ -69,6 +69,7 @@ if skipstartdelay == 0:
 import vkode
 global warning_sign
 warning_sign = Fore.RED + "  ! " + Fore.RESET
+debugl = Fore.YELLOW + ">>> " + Fore.RESET
 
 print('  > VKode resources loaded,  ', cas)
 
