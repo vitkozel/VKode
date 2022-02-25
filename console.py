@@ -174,10 +174,10 @@ while True:
 			time.sleep(0.6)
 		time.sleep(0.15)
 		clearConsole()
-		print(home)
+		print(home )
 		print(nula)
 		if noticeverafter == 1:
-			print("YOUR VKODE IS NOT UPDATED! Update VKode, vkupdate()")
+			print("YOUR VKODE IS NOT UPDATED! Update VKode Stable, vkupdate()")
 
 
 	if vblock == 1:
