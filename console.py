@@ -188,7 +188,6 @@ while True:
 		print("  > Vblock is set to 2, killing the Console immediately!")
 		pymsgbox.alert('VBlock is blocking the Console. If you have downloaded the Dev package, try changing Vblock value in vksettings.py', 'Vblock error')
 		exit()
-
 	break
 
 
