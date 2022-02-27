@@ -14,6 +14,8 @@ console_location = console_location[:-10]
 
 print('  > External resources 1/2 loaded, ')
 
+
+
 opensettings = open(console_location + "vksettings.txt", "r")
 writesettings = open(console_location + "vksettings.py", "w")
 writesettings.write(opensettings.read())
@@ -157,7 +159,7 @@ while True:
 
 	print(nula)
 
-    vkode_text = "/\   /\   | | __  ___    __| |  ___\n\ \ / /   | |/ / / _ \  / _` | / _ |)\n \ V /    |   < | (_) || (_| ||  __/\n  \_/     |_|\_\ \___/  \__,_| \___|"
+	vkode_text = "fsdfů"
     home_subs = "Powered by VKode, Created with <3 in EU, twitter.com/vkode_\nvkode.xyz, docs.vkode.xyz"
     home = vkode_text + "\n" + home_subs
 
