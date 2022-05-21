@@ -121,7 +121,7 @@ def statelog():
 	state.write("STATUS:\n")
 	cas = datetime.now()
 	state.write(str(cas) + "\n\n")
-	
+
 
 if state == 1:
 	wakereason = "console start"
@@ -159,11 +159,7 @@ while True:
 
 	print(nula)
 
-	vkode_text = "fsdfů"
-    home_subs = "Powered by VKode, Created with <3 in EU, twitter.com/vkode_\nvkode.xyz, docs.vkode.xyz"
-    home = vkode_text + "\n" + home_subs
-
-	print(home)
+	#print(home)
 	print(nula)
 
 	if noticeverafter == 1:
@@ -194,7 +190,7 @@ while True:
 
 
 while True:
-	print(nula)
+	#print(nula)
 	text = input(' >> ')
 	if text.strip() == "": continue
 	result, error = vkode.run('<stdin>', text)
