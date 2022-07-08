@@ -159,7 +159,9 @@ while True:
 
 	print(nula)
 
-	#print(home)
+	home = "    Powered by VKode, a Stingray project. Created with <3 in EU\n    package " + str(verzelocal) + " vkode.xyz"
+
+	print(home)
 	print(nula)
 
 	if noticeverafter == 1:
@@ -172,7 +174,7 @@ while True:
 			time.sleep(0.6)
 		time.sleep(0.15)
 		clearConsole()
-		print(home )
+		print(home)
 		print(nula)
 		if noticeverafter == 1:
 			print("YOUR VKODE IS NOT UPDATED! Update VKode Stable, vkupdate()")

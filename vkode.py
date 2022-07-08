@@ -4,7 +4,7 @@ from distutils.log import error
 from logging import warning
 from time import time
 
-from numpy import number # For time
+from numpy import number, source # For time
 from strings_with_arrows import * # External source
 import string
 import os # Should be installed by default
@@ -24,7 +24,7 @@ from colorama import init # For colored text lines
 init() # Initiate Colorama (from line 17)
 from colorama import Fore, Back, Style # And finally importing Colorama (from line 17)
 from inspect import currentframe, getframeinfo # Library needed to get information to warnings
-
+import yaml #Package for YAML
 
 # CONSTANTS
 DIGITS = '0123456789' # Numbers
@@ -1817,8 +1817,14 @@ class BuiltInFunction(BaseFunction):
     #print(move)
     move_f.close()
     if use in move:
-      call = "lib\\" + use + "\\" + use + ".py"
-      subprocess.call(call, shell=True)
+      current_library_path = vkode_location + "lib\\" + use + "\\"
+      current_library_index = current_library_path + "index.yml"
+      with open(current_library_index) as fh:
+        current_library_index_load = yaml.safe_load(fh)
+        
+      current_library_source = current_library_path + current_library_index_load["source"]
+      print(debugl + current_library_source)
+      exec(open(current_library_source).read())
     else:
       global frameinfo
       frameinfo = getframeinfo(currentframe())
@@ -2859,4 +2865,5 @@ def run(fn, text):
 # 1986 -- Libs dependencies
 # INSTALLED LIBRARIES FOLLOW
 # These are libraries installed by Dev View.
+
 
